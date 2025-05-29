@@ -1,0 +1,322 @@
+/* 1) Top header bar (dark blue) */
+.header-navbar {
+  background-color: #1c237e;
+  padding: 0.5rem 0;
+}
+.header-navbar .navbar-brand,
+.header-navbar .btn {
+  color: #fff;
+}
+.header-navbar .btn:hover,
+.header-navbar .btn:focus {
+  color: #e0e0e0;
+}
+.no-padding {
+  padding: 0 !important;
+}
+.bg-darkblue {
+  background-color: #1C237E !important;
+}
+
+/* 2) Main navigation bar (white) */
+.navbar-light.bg-white {
+  background-color: #fff;
+  border-bottom: 1px solid #e5e5e5;
+  padding: 0.5rem 0;
+}
+.navbar-light.bg-white .nav-link {
+  color: #333;
+}
+.navbar-light.bg-white .nav-link:hover,
+.navbar-light.bg-white .nav-link:focus {
+  color: #007bff;
+}
+.navbar-light.bg-white .nav-link.active {
+  color: #d00;
+}
+
+/* 3) Common focus style */
+.navbar .btn:focus-visible,
+.navbar .nav-link:focus-visible,
+.navbar-toggler:focus-visible {
+  outline: 2px solid #4a90e2;
+  outline-offset: 2px;
+}
+/* -----------------------------------------------------------*/
+/* --언어 선택  -----------------------------------------------*/
+/* -----------------------------------------------------------*/
+.desaturated {
+  filter: grayscale(100%);
+  opacity: 0.6;
+}
+
+.selected-lang span {
+  font-weight: 600;
+}
+
+.unselected-lang span {
+  font-weight: 400;
+}
+
+/* -----------------------------------------------------------*/
+/* --히어로 전체 -----------------------------------------------*/
+/* -----------------------------------------------------------*/
+
+.hero-section {
+display: flex;
+background: url('images/hero_img.png') repeat left center;
+max-width: 1280px;
+aspect-ratio: 1282 / 464;
+/* margin: 2rem auto; */
+border-radius: 1.5rem;
+overflow: hidden;
+/* background: #1c237e; */
+}
+
+.hero-image {
+flex: 0 0 30%;
+background-size: cover;
+}
+
+.hero-content {
+flex: 1;
+background: linear-gradient(90deg, rgba(255, 255, 255, 0), #1c237e 100%);
+/* background: transparent; */
+color: #fff;
+display: flex;
+flex-direction: column;
+justify-content: center;
+padding: 2.5rem 2rem;
+}
+
+.hero-content h1 {
+font-size: 2.0rem;
+font-weight: 700;
+width: 100%;
+margin-bottom: 1.5rem;
+}
+
+.hero-search {
+margin-bottom: 2rem;
+}
+
+
+/* 통계 카드 전체 컨테이너 */
+.stats-cards {
+display: flex;
+gap: 1.5rem;
+justify-content: flex-start;
+}
+
+/* 각 카드 아이템 */
+.stats-cards > div {
+background: transparent;
+border: 1.5px solid #fff;
+border-radius: 1rem;
+padding: 1.2rem 0rem;
+min-width: 140px;
+flex: 1;
+text-align: center;
+}
+
+/* 아이콘 */
+.stats-cards i {
+color: #1c237e;
+margin-bottom: 0.5rem;
+}
+
+/* 숫자 */
+.stats-cards p.h4 {
+font-weight: 600;
+color: #ffffff;
+}
+
+/* 항목명 */
+.stats-cards small {
+color: #adb1b4;
+}
+
+.stats-icon {
+width: 48px;
+height: 48px;
+margin-bottom: 0.5rem;
+object-fit: contain;
+}
+
+/* -----------------------------------------------------------*/
+/* --footer --------------------------------------------------*/
+/* -----------------------------------------------------------*/
+
+.site-footer {
+font-size: 0.9rem;
+color: #333;
+}
+
+.site-footer a {
+color: #333;
+text-decoration: none;
+}
+
+.site-footer a:hover {
+text-decoration: underline;
+}
+
+.site-footer i {
+color: #555;
+}
+
+/* -----------------------------------------------------------*/
+/* --Category ------------------------------------------------*/
+/* -----------------------------------------------------------*/
+
+/* Data Category 카드 */
+.category-card {
+background-color: #fff;
+border: 1px solid #e9ecef;
+border-radius: 0.5rem;
+transition: box-shadow .2s ease;
+}
+.category-card:hover {
+box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+.category-card img {
+display: block;
+margin: 0 auto 0.5rem;
+}
+.category-card .card-title {
+font-size: 1rem;
+margin-bottom: 0.25rem;
+color: #1c237e;
+}
+.category-card p {
+font-size: 0.875rem;
+color: #6c757d;
+}
+
+/* -----------------------------------------------------------*/
+/* --News & Activities ---------------------------------------*/
+/* -----------------------------------------------------------*/
+
+/* News & Activities 카드 */
+.news-card {
+background-color: #fff;
+border: 1px solid #e9ecef;
+border-radius: 0.5rem;
+transition: box-shadow .2s ease;
+}
+.news-card:hover {
+box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+.news-card img {
+width: 100%;
+height: auto;
+object-fit: cover;
+border-radius: 0.5rem;
+}
+.news-card h5 {
+font-size: 1.125rem;
+margin-top: 0.75rem;
+color: #1c237e;
+}
+.news-card p {
+font-size: 0.9rem;
+color: #6c757d;
+margin-top: 0.5rem;
+}
+
+/* -----------------------------------------------------------*/
+/* --Statistics ----------------------------------------------*/
+/* -----------------------------------------------------------*/
+
+/* Statistics 섹션 배경 */
+.statistics-banner {
+/*   background: linear-gradient(135deg, #1c237e 0%, #3a4ab8 100%); */
+background: url('images/news/bg_statistics.svg') no-repeat center center;
+background-size: cover;
+/* padding-top: 60px !important;
+padding-bottom: 60px !important; */
+}
+
+/* 각 통계 아이템 */
+.stat-item {
+display: flex;
+flex-direction: column;
+justify-content: center;
+text-align: center;
+}
+.stat-number {
+font-size: 2rem;
+font-weight: 600;
+}
+.stat-label {
+font-size: 1rem;
+font-weight: 300;
+}
+
+/* 구획선 색상 조정 (밝은 흰색 반투명) */
+.statistics-banner .border-end {
+border-right: 1px solid rgba(255,255,255,0.5) !important;
+}
+.statistics-banner .border-bottom {
+border-bottom: 1px solid rgba(255,255,255,0.5) !important;
+} 
+
+/* -----------------------------------------------------------*/
+/* --Recently Update -----------------------------------------*/
+/* -----------------------------------------------------------*/
+/*  섹션 */
+.recent-update h2 {
+color: #1c237e;
+}
+.recent-update .section-title {
+color: #1c237e;
+margin-bottom: 1rem;
+font-weight: 600;
+}
+.recent-update .update-list .update-link {
+display: block;
+font-size: 1rem;
+font-weight: 500;
+color: #333;
+text-decoration: none;
+}
+.recent-update .update-list .update-link:hover {
+text-decoration: underline;
+}
+.recent-update .update-meta {
+font-size: 0.875rem;
+color: #6c757d;
+}
+
+/* -----------------------------------------------------------*/
+/* --Dataset left side----------------------------------------*/
+/* -----------------------------------------------------------*/
+.filter-box {
+font-size: 0.95rem;
+line-height: 1.4;
+}
+
+.filter-box h6 {
+font-size: 1rem;
+}
+
+.filter-box ul li i {
+font-size: 0.9rem;
+vertical-align: middle;
+}
+
+.bg-yellow {
+background-color: #f6ff00;
+}
+.result-card img {
+flex-shrink: 0;
+}
+
+.no-left-padding {
+padding-left: 0 !important;
+margin-left: 0 !important;
+} 
+
+/* -----------------------------------------------------------*/
+/* --Dataset right side---------------------------------------*/
+/* -----------------------------------------------------------*/

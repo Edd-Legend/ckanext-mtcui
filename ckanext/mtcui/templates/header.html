@@ -1,0 +1,90 @@
+{% ckan_extends %}
+
+{% block styles %}
+  {{ super() }}
+  {% asset "mtcui/mtcui-css" %}
+
+{% endblock %}
+
+{% block header_wrapper %}
+  <!-- Top Header Bar (Dark Blue) -->
+  <div class="w-100 bg-dareblue border-bottom">
+    <nav class="navbar header-navbar navbar-expand-lg navbar-dark">
+      <div class="container site-wrapper px-4">
+        <!-- Brand -->
+        {% block header_logo %}
+          <a class="navbar-brand text-light" href="{{ h.url_for('home.index') }}">
+            {% if g.site_logo %}
+              <img src="{{ h.url_for_static(g.site_logo) }}" alt="{{ g.site_title }}" title="{{ g.site_title }}" class="img-responsive" style="max-height: 40px;">
+            {% else %}
+              <span style="font-weight: 600;">Data</span>.gov.la
+            {% endif %}
+          </a>
+        {% endblock %}
+
+        <!-- Login/Register -->
+        <div class="ms-auto d-flex gap-3">
+          {% if c.userobj %}
+            <a href="{{ h.url_for('user.logout') }}" class="btn btn-outline-light">Log out</a>
+          {% else %}
+            <a href="{{ h.url_for('user.login') }}" class="btn btn-outline-light">Log in</a>
+            {% if h.check_access('user_create') %}
+              <a href="{{ h.url_for('user.register') }}" class="btn btn-light text-primary">Register</a>
+            {% endif %}
+          {% endif %}
+        </div>
+      </div>
+    </nav>
+  </div>
+
+  <!-- Main Navigation Bar (White) -->
+  <div class="w-100 bg-white border-bottom">
+    <div class="container site-wrapper px-4">
+      <nav class="navbar navbar-expand-lg navbar-light bg-white">
+        <!-- Mobile Toggle Button -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainMenu" 
+                aria-controls="mainMenu" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Main Navigation -->
+        <div class="collapse navbar-collapse" id="mainMenu">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link {% if c.action == 'index' %}active{% endif %}" 
+                 href="{{ h.url_for('home.index') }}">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link {% if c.controller == 'organization' %}active{% endif %}" 
+                 href="{{ h.url_for('organization.index') }}">Organizations</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link {% if c.controller == 'dataset' %}active{% endif %}" 
+                 href="{{ h.url_for('dataset.search') }}">Regulation</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link {% if c.controller == 'group' %}active{% endif %}" 
+                 href="{{ h.url_for('group.index') }}">Data Request</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link {% if c.action == 'about' %}active{% endif %}" 
+                 href="{{ h.url_for('home.about') }}">About</a>
+            </li>
+          </ul>
+
+          <!-- Language Selector -->
+          <div class="d-flex align-items-center gap-3">
+            <div class="d-flex align-items-center gap-1 selected-lang">
+              <img src="{{ h.url_for_static('/images/flg_lao.png') }}" width="20" height="20" alt="Lao" />
+              <span class="fw-semibold text-dark">Lao</span>
+            </div>
+            <div class="d-flex align-items-center gap-1 unselected-lang">
+              <img src="{{ h.url_for_static('/images/flg_eng.png') }}" width="20" height="20" alt="EN" class="desaturated" />
+              <span class="text-dark">EN</span>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </div>
+{% endblock %}

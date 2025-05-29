@@ -1,0 +1,38 @@
+[project]
+name = "ckanext-mtcui"
+version = "0.0.1"
+description = "ui for ckan"
+readme = "README.md"
+authors = [
+    {name = "ido", email = "ido@mupai.studio"}
+]
+license = {text = "AGPL"}
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "License :: OSI Approved :: GNU Affero General Public License v3 or later (AGPLv3+)",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+]
+
+keywords = [ "CKAN", ]
+dependencies = []
+
+[project.urls]
+Homepage = "https://github.com/mupaistudio/ckanext-mtcui"
+
+[project.entry-points."ckan.plugins"]
+mtcui = "ckanext.mtcui.plugin:MtcuiPlugin"
+
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[tool.pytest.ini_options]
+filterwarnings = [
+        "ignore::sqlalchemy.exc.SADeprecationWarning",
+        "ignore::sqlalchemy.exc.SAWarning",
+        "ignore::DeprecationWarning",
+]
+addopts = "--ckan-ini test.ini"

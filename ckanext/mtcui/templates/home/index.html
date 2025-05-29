@@ -1,0 +1,121 @@
+{% ckan_extends %}
+{% block content %}
+<div class="container site-wrapper">
+    {{ self.flash() }}
+    {% block primary_content %}
+    <!-- Hero Section -->
+    <div class="container site-wrapper">
+      <section class="hero-section mb-5">
+        <div class="hero-image" style="background: linear-gradient(135deg, #0D47A1 0%, #1976D2 100%); min-height: 400px; border-radius: 16px; position: relative; overflow: hidden;">
+          <div class="hero-content" style="padding: 4rem 2rem; color: white; text-align: center;">
+            <h1 class="mb-4" style="font-size: 3rem; font-weight: 700; text-shadow: 0 2px 4px rgba(0,0,0,0.1);">Welcome to <b>Lao PDR Open Data</b></h1>
+            <form class="d-flex hero-search mb-5 justify-content-center" action="{% url_for 'dataset.search' %}" method="get">
+              <div style="max-width: 600px; width: 100%; position: relative;">
+                <input class="form-control form-control-lg" type="search" name="q" placeholder="Search datasets..." aria-label="Search" style="border-radius: 50px; padding-left: 1.5rem; padding-right: 3rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);" />
+                <button class="btn btn-light" type="submit" style="position: absolute; right: 5px; top: 50%; transform: translateY(-50%); border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;">
+                  🔍
+                </button>
+              </div>
+            </form>
+            <div class="d-flex stats-cards text-center justify-content-center gap-4">
+              <div class="stat-card" style="background: rgba(255,255,255,0.1); padding: 1.5rem; border-radius: 12px; backdrop-filter: blur(10px); min-width: 160px;">
+                <img src="/images/hero_dataset.svg" alt="Datasets" class="stats-icon" style="width: 48px; height: 48px; margin-bottom: 1rem;" />
+                <p class="h3 mb-0" style="font-weight: 600;">{{ h.get_dataset_count1() }}</p>
+                <small style="opacity: 0.9;">Datasets</small>
+              </div>
+              <div class="stat-card" style="background: rgba(255,255,255,0.1); padding: 1.5rem; border-radius: 12px; backdrop-filter: blur(10px); min-width: 160px;">
+                <img src="/images/hero_org.svg" alt="Bureau" class="stats-icon" style="width: 48px; height: 48px; margin-bottom: 1rem;" />
+                <p class="h3 mb-0" style="font-weight: 600;">{{ h.get_organization_count() }}</p>
+                <small style="opacity: 0.9;">Organizations</small>
+              </div>
+              <div class="stat-card" style="background: rgba(255,255,255,0.1); padding: 1.5rem; border-radius: 12px; backdrop-filter: blur(10px); min-width: 160px;">
+                <img src="/images/hero_grp.svg" alt="Group" class="stats-icon" style="width: 48px; height: 48px; margin-bottom: 1rem;" />
+                <p class="h3 mb-0" style="font-weight: 600;">{{ h.group_list() | length }}</p>
+                <small style="opacity: 0.9;">Groups</small>
+              </div>
+              <div class="stat-card" style="background: rgba(255,255,255,0.1); padding: 1.5rem; border-radius: 12px; backdrop-filter: blur(10px); min-width: 160px;">
+                <img src="/images/hero_resource.svg" alt="Resource" class="stats-icon" style="width: 48px; height: 48px; margin-bottom: 1rem;" />
+                <p class="h3 mb-0" style="font-weight: 600;">{{ h.get_resource_count() }}</p>
+                <small style="opacity: 0.9;">Resources</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Recently Updated and Most Visited Section -->
+      <section class="recent-updates-section mb-5">
+        <div class="bg-light rounded-4 p-4" style="box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+          <div class="row g-4">
+            <!-- Recently Updated Column -->
+            <div class="col-md-6">
+              <h3 class="h4 mb-4 fw-semibold" style="color: #0D47A1;">Recently Updated Dataset</h3>
+              {% set recent_datasets = h.recently_changed_packages_activity_stream(limit=10) %}
+              <div class="list-group list-group-flush">
+                {% for dataset in recent_datasets %}
+                  <div class="list-group-item bg-transparent border-0 px-0 hover-card" style="transition: all 0.2s ease;">
+                    <a href="{{ h.url_for('dataset.read', id=dataset.name) }}" 
+                       class="text-primary text-decoration-none fw-medium d-block mb-1">
+                      {{ dataset.title }}
+                    </a>
+                    <p class="text-muted small mb-0">
+                      <i class="fa fa-calendar me-1"></i>
+                      Updated {{ h.render_datetime(dataset.metadata_modified, date_format='%B %d, %Y') }}
+                      <br />
+                      <i class="fa fa-download me-1"></i>
+                      {{ h.get_download_count_for_dataset_summary_using_url(dataset.name) }} downloads
+                    </p>
+                  </div>
+                {% endfor %}
+              </div>
+            </div>
+
+            <!-- Most Visited Column -->
+            <div class="col-md-6">
+              <h3 class="h4 mb-4 fw-semibold" style="color: #0D47A1;">Most Viewed Datasets</h3>
+              {% set popular_datasets = h.get_most_visited_datasets(limit=6) %}
+              <div class="list-group list-group-flush">
+                {% for dataset in popular_datasets %}
+                  <div class="list-group-item bg-transparent border-0 px-0 hover-card" style="transition: all 0.2s ease;">
+                    <a href="{{ h.url_for('dataset.read', id=dataset.name) }}" 
+                       class="text-primary text-decoration-none fw-medium d-block mb-1">
+                      {{ dataset.title }}
+                    </a>
+                    <p class="text-muted small mb-0">
+                      <i class="fa fa-eye me-1"></i>
+                       {{ h.get_view_count_for_dataset(dataset.name) }} total views
+                      <i class="fa fa-file ms-2 me-1"></i>
+                      {{ dataset.resources|length }} resources
+                    </p>
+                  </div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="most-downloaded-resources-section mb-5">
+        <h3 class="h4 mb-4 fw-semibold" style="color: #0D47A1;">Most Downloaded Resources</h3>
+        <div class="list-group list-group-flush">
+          {% set resources = h.get_all_resources1(limit=3) %}
+          {% for resource in resources %}
+            <div class="list-group-item d-flex align-items-start gap-3">
+              <div>
+                <p class="mb-1 fw-semibold text-dark">{{ resource.name or resource.url.split('/')[-1] }}</p>
+                <p class="text-muted small mb-0">
+                  <i class="fa fa-envelope me-1"></i>
+                  {{ h.get_download_count_for_resource(resource.id) }} downloads
+                </p>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </section>
+      
+    </div>
+  
+    <!-- Hero Section 끝 -->
+    {% endblock primary_content %}
+</div>
+{% endblock content %}

@@ -1,0 +1,90 @@
+/* 1) Default: center .site-wrapper, max width 1200px */
+.site-wrapper {
+    max-width: 1280px;
+    width: 100%;
+    margin: 0 auto;
+  }
+  
+  /* 2) At 1200px and below: apply 1rem horizontal padding to all .container (site-wrapper ⏤ px-0) */
+  @media (max-width: 1280px) {
+    .container.site-wrapper,
+    .container.px-0 {
+      max-width: 100% !important;
+      margin: 0 !important;
+      padding-left: 1rem !important;
+      padding-right: 1rem !important; 
+    }
+    .navbar-toggler {
+      margin-left: 1rem !important;
+    }
+  
+    /* 카드 스타일 */
+    .stats-cards {
+      gap: 1rem;
+    }
+    
+    .stats-cards > div {
+      padding: 1rem 1.5rem;
+    }
+  }
+  
+  
+  @media (max-width: 992px) {
+    .hero-image { 
+      display: none; 
+    }
+    .hero-content h1 {
+      font-size: 1.6rem; /* 필요시 적절히 조정 */
+    }
+    .stats-cards > div {
+      padding: 0.8rem;
+  /*       min-width: 120px; */
+    }
+    .stats-icon {
+      width: 24px;
+      height: 24px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .hero-section { 
+      display: flex;
+      aspect-ratio: auto;
+    }
+    .hero-content h1 {
+      font-size: 1rem; /* 필요시 적절히 조정 */
+    }
+    .hero-image { 
+      display: none; 
+    }
+    .stats-cards {
+      display: flex;
+      flex-wrap: nowrap;
+      justify-content: space-between;
+      overflow: hidden;     /* 필요시 overflow-x: auto; 해도 됨 */
+      gap: 0.5rem;
+      padding: 0 1rem;
+    }
+    .stats-icon {
+      display: none;
+    }
+    .stats-cards > div {
+      flex: 1 1 25%;        /* 전체 넓이의 1/4씩 */
+      min-width: 0;         /* flex-basis가 우선하도록 */
+      margin-bottom: 0;
+    }
+    
+    /* 검색창·아이콘 등도 비율에 맞춰 작게 */
+    .hero-search input {
+      font-size: 0.875rem;
+    }
+    .hero-search button {
+      font-size: 0.875rem;
+    }
+  
+    .site-footer .text-md-end {
+      text-align: left !important;
+    }
+  }
+  
+  

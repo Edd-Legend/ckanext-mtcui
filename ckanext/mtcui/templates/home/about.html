@@ -1,0 +1,41 @@
+{% extends "page.html" %}
+
+{% block subtitle %}{{ _('About') }}{% endblock %}
+
+{% block breadcrumb_content %}
+  <li class="active">{% link_for _('About'), named_route='home.about' %}</li>
+{% endblock %}
+
+{%- block styles %}
+{% asset "mtcui/mtcui-css" %}
+{% set theme = h.get_rtl_theme() if h.is_rtl_language() else g.theme %}
+{% asset theme %}
+
+{% endblock %}
+
+
+
+
+
+{% block primary %}
+  <article class="module" role="main">
+    <div class="module-content">
+      {% block about %}
+        {% if g.site_about %}
+          {{ h.render_markdown(g.site_about) }}
+        {% else %}
+          <h1 class="page-heading1">{{ _('About') }}123456</h1>
+          {% snippet 'home/snippets/about_text.html' %}
+        {% endif %}
+      {% endblock %}
+    </div>
+
+    <div class="mtcui-highlight">
+      CKAN ປະເທດລາວ <strong>MTC-UI</strong>ສາທາລະນະລັດ ປະຊາທິປະໄຕ ປະຊາຊົນລາວ
+    </div>
+  </article>
+{% endblock %}
+
+
+
+{% block secondary %}{% endblock %}

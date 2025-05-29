@@ -1,0 +1,29 @@
+# mtcui-js:
+#   filter: rjsmin
+#   output: ckanext-mtcui/%(version)s-mtcui.js
+#   contents:
+#     - js/mtcui.js
+#   extra:
+#     preload:
+#       - base/main
+
+
+
+
+mtcui-css:
+  filter: cssrewrite
+  output: ckanext-mtcui/%(version)s-mtcui.css
+  contents:
+    - css/style_header.css
+    - css/mtcui_bs.css
+    - css/responsive.css
+    
+  
+    
+mtcui-js:
+  output: ckanext-mtcui/%(version)s-mtcui.js
+  contents:
+    - js/mtcui.js
+    - js/example_theme_popover.js
+
+
