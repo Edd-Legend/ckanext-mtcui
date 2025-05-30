@@ -98,7 +98,7 @@
       <section class="most-downloaded-resources-section mb-5">
         <h3 class="h4 mb-4 fw-semibold" style="color: #0D47A1;">Most Downloaded Resources</h3>
         <div class="list-group list-group-flush">
-          {% set resources = h.get_all_resources1(limit=3) %}
+          {% set resources = h.get_all_resources1(limit=5) %}
           {% for resource in resources %}
             <div class="list-group-item d-flex align-items-start gap-3">
               <div>
